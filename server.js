@@ -11,9 +11,10 @@ app.get('/', (req, res) => {
   
   // Instagram REAL OAuth
 app.get('/instagram/auth-url', (req, res) => {
-  const instagramAuthUrl = `https://www.facebook.com/v20.0/dialog/oauth?client_id=TEU_APP_ID_AQUI&redirect_uri=https://bandsync-api-production-b004.up.railway.app/instagram/callback&scope=instagram_basic,pages_show_list,instagram_manage_insights&response_type=code`;
+  const instagramAuthUrl = "https://www.facebook.com/v20.0/dialog/oauth?client_id=832028183241524&redirect_uri=https://bandsync-api-production-b004.up.railway.app/instagram/callback&scope=instagram_basic,pages_show_list,instagram_manage_insights&response_type=code";
   res.json({ url: instagramAuthUrl });
 });
+
 
 
 app.get('/instagram/insights/:profileId', (req, res) => {
@@ -96,6 +97,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 BandSync 2.0: http://localhost:${PORT}`);
 });
+
 
 
 
