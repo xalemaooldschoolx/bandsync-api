@@ -13,11 +13,6 @@ app.get('/', (req, res) => {
 app.get('/instagram/auth-url', (req, res) => {
   const instagramAuthUrl = "https://www.facebook.com/v20.0/dialog/oauth?client_id=832028183241524&redirect_uri=https://bandsync-api-production-b004.up.railway.app/instagram/callback&scope=instagram_basic,pages_show_list,instagram_manage_insights&response_type=code";
   res.json({ url: instagramAuthUrl });
-  
-app.get('/instagram/callback', async (req, res) => {
-  const { code } = req.query;
-  if (!code) return res.status(400).json({ error: 'Código necessário' });
-  res.json({ code, status: 'callback recebido, próximo: token exchange' });
 });
 
 
@@ -102,6 +97,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 BandSync 2.0: http://localhost:${PORT}`);
 });
+
 
 
 
