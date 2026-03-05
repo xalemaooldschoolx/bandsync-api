@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const INSTAGRAM_APP_ID = "2059373777977241";
-const INSTAGRAM_APP_SECRET = "aa443770d6bcab2ba745b9b13d7cba2d";  // ← NOVO!
+const INSTAGRAM_APP_ID = process.env.INSTAGRAM_APP_ID || "2059373777977241";
+const INSTAGRAM_APP_SECRET = process.env.INSTAGRAM_APP_SECRET;
 
 // Callback Instagram
 app.get('/instagram/callback', async (req, res) => {
@@ -113,6 +113,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 BandSync 2.0: http://localhost:${PORT}`);
 });
+
 
 
 
