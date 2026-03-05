@@ -2,6 +2,23 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
+const INSTAGRAM_APP_ID = "2059373777977241";
+const INSTAGRAM_APP_SECRET = "aa443770d6bcab2ba745b9b13d7cba2d";  // ← NOVO!
+
+// Callback Instagram
+app.get('/instagram/callback', async (req, res) => {
+  const { code } = req.query;
+  
+  try {
+    const tokenResponse = await fetch(`https://graph.facebook.com/v20.0/oauth/access_token?client_id=${INSTAGRAM_APP_ID}&client_secret=${INSTAGRAM_APP_SECRET}&redirect_uri=https://bandsync-api-production-b004.up.railway.app/instagram/callback&code=${code}`);
+    const tokenData = await tokenResponse.json();
+    
+    res.json({ success: true, access_token: tokenData.access_token });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 app.use(cors());
 app.use(express.json());
 
@@ -96,6 +113,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 BandSync 2.0: http://localhost:${PORT}`);
 });
+
 
 
 
